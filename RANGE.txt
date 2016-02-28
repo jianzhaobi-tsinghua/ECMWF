@@ -1,0 +1,2 @@
+China:  10N - 60N; 70E - 150E
+Europe: 30N - 75N; 20W - 70E

@@ -1,0 +1,54 @@
+/*——————————————————————
+/*ERA-Interim下载手册
+/*Bi Jianzhao
+/*Version 1.1
+/*2015.6.24
+/*——————————————————————
+
+1. 新建 $HOME.ecmwfapirc
+在服务器的$HOME文件夹(自己的根目录)下新建.ecmwfapirc，将 https://api.ecmwf.int/v1/key/ 中的key对象复制到这个文件中：
+e.g.
+{
+    "url"   : "https://api.ecmwf.int/v1",
+    "key"   : "XXXXXXXXXXXXXXXXXXXXXX",
+    "email" : "john.smith@example.com"
+}
+
+2. 下载 ecmwfapi
+在 https://software.ecmwf.int/wiki/display/WEBAPI/Access+ECMWF+Public+Datasets 中下载 ecmwf-api-client-python.tgz，将其解压到任意有权限的文件夹中(压缩包包含两个py文件和两个示例)
+e.g. /home/bijianzhao/progs/
+
+3. 配置 ecmwfapi
+在 $HOME/.bash_profile 文件中添加Python配置路径。添加后运行 source .bash_profile 或重新登录服务器
+e.g. export PYTHONPATH=/home/bijianzhao/progs/
+
+4. 下载ERA-Interim数据 
+按照ECMWF的语法建立python文件下载数据，具体参数参见 https://software.ecmwf.int/wiki/display/WEBAPI/Brief+MARS+request+syntax 和 https://software.ecmwf.int/wiki/display/UDOC/MARS+keywords
+e.g.
+#!/usr/bin/env python
+from ecmwfapi import ECMWFDataServer
+server = ECMWFDataServer()
+server.retrieve({
+    "class": "ei",                  #数据类型为ERA-Interim
+    "dataset": "interim",           
+    "date": "2015-01-01",
+    "expver": "1",                  
+    "levelist": "46/to/60",         #层数为46-60
+    "levtype": "ml",                #层级类型为Model Layer
+    "param": "131.128/132.128",     #选择参数u和v
+    "step": "0",                    
+    "stream": "oper",
+    "target": "20150101_U_V_ml.nc", #设定下载文件名
+    "time": "00/06/12/18",          #选择4个时刻
+    "type": "an",                   #数据为Analysis
+    "area": "60/70/10/150",         #经纬度范围
+    "format": "netcdf",             #数据格式为NetCDF
+    "grid": "0.36/0.36"             #分辨率为0.36
+    })
+
+
+/*——————————————————————
+参考:
+https://software.ecmwf.int/wiki/display/WEBAPI/Access+ECMWF+Public+Datasets
+/*——————————————————————
+

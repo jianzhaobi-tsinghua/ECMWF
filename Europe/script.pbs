@@ -1,0 +1,11 @@
+#!/bin/sh
+#PBS -N windProcess
+#PBS -l nodes=1:ppn=12
+#PBS -j oe
+#PBS -o /home/bijianzhao/log
+#PBS -m bae
+#PBS -M bjz14@mails.tsinghua.edu.cn
+
+
+cd /home/bijianzhao/git/ECMWF/Europe
+/gl/tools/run/Matlab/R2013b/bin/matlab  -nodesktop -nosplash -r main

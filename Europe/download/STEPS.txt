@@ -1,0 +1,14 @@
+********************
+mdl&sfc数据下载流程
+Jianzhao Bi
+********************
+
+- mkdir 20XX	% 建立年份文件夹
+- cp dxx.py rxx.sh 20XX/	% 将download.py和retrieve.sh移动到年份文件夹中
+- cd 20XX	
+- mkdir 20XX	% 建立子年份文件夹，用于存储下载的nc文件
+- vim dxx.py 	% 注意：修改年份！
+- vim rxx.sh 	% 注意：修改年份和月份，注意2008年和2012年！
+- screen -S xxx	% 进入子窗口运行
+- sh rxx.sh		% 运行sh脚本
+- Ctrl-A-D
