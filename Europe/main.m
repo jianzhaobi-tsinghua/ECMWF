@@ -3,7 +3,7 @@ clc
 
 tic 
 
-parfor year=2005:2015
+parfor year=2015:2015
     windGlobalProcess(year)
 end
 
